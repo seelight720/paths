@@ -142,14 +142,13 @@ def loadOD(filename,ProcessNumb):
     return OD_dict
 
 if __name__=='__main__':
-
     ProcessNumb=16 #进程数量
 
     Unmatched_node_dict=load_Unmatched_node_topology_ID(r'../data/Unmatched_node_topology_ID0.txt')
     OD_dict=loadOD(r'../data/test.csv',ProcessNumb)#相同进程要处理的数据放在同一个key中
     G,node=my_graph()
 
-    # pathss=get_shortest_path(G,node,56336,56486)
+    # paths2s=get_shortest_path(G,node,56336,56486)
 
     print(DT.datetime.now())#开始时间
 
