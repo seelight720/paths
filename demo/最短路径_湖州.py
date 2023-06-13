@@ -9,9 +9,9 @@ import multiprocessing
 def my_graph():
     print('构建路网拓扑')
     ######加载表格中信息并把没边的点删除##########
-    data_1 = xlrd.open_workbook(r'../data/node2.xlsx')
+    data_1 = xlrd.open_workbook(r'../data/node_huzhou.xlsx')
     sheet_1 = data_1.sheet_by_index(0)
-    data_2 = xlrd.open_workbook(r'../data/edge2.xlsx')
+    data_2 = xlrd.open_workbook(r'../data/edge_huzhou.xlsx')
     sheet_2 = data_2.sheet_by_index(0)
 
     # 读取节点集合
@@ -161,6 +161,7 @@ def start_proecss_3_mutiOD(G,Unmatched_node_dict,node,OD_list,ProcessNumb_id):
 
 def load_Unmatched_node_topology_ID(filename):
     print('load_Unmatched_node_topology_ID: {0}'.format(filename))
+    #文件格式TAZID, nodeID
     Unmatched_node_dict = {}
     with open(filename, "r",encoding="UTF-8-sig") as f:
         for line in f:
@@ -177,7 +178,7 @@ def loadOD(filename,ProcessNumb):
             line = line.strip('\n')  # 去掉列表中每一个元素的换行符
             arrline = line.split(',')
             # OD_list.append([ int(arrline[2]), int(arrline[0]), int(arrline[3]),int(arrline[1]),float(arrline[4]) ])
-            OD_list.append([int(arrline[0]), int(arrline[1]), int(arrline[2]), int(arrline[3]), float(arrline[4])])
+            OD_list.append([str(arrline[0]), str(arrline[1]), int(arrline[2]), int(arrline[3]), float(arrline[4])])
 
     OD_dict={}
     count=int(len(OD_list)/ProcessNumb)
@@ -198,8 +199,8 @@ def loadOD(filename,ProcessNumb):
 if __name__=='__main__':
     ProcessNumb=4 #进程数量
 
-    Unmatched_node_dict=load_Unmatched_node_topology_ID(r'../data/Unmatched_node_topology_ID0.txt')
-    OD_dict=loadOD(r'../data/jinhua_result_02.csv',ProcessNumb)#相同进程要处理的数据放在同一个key中
+    Unmatched_node_dict=load_Unmatched_node_topology_ID(r'../data/Unmatched_node_topology_ID_湖州.txt')
+    OD_dict=loadOD(r'../data/2交通小区间的通勤OD分布_huzhou.txt',ProcessNumb)#相同进程要处理的数据放在同一个key中
     G,node=my_graph()
 
     # paths2s=get_shortest_path(G,node,56336,56486)

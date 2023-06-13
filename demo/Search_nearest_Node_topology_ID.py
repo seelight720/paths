@@ -99,10 +99,10 @@ def start_nearest_Node( Unmatched_node_dict, Node_topology_dict ):
                 f.write('{0},{1}{2}'.format(Unmatched_node_topology_ID[i][0] , Unmatched_node_topology_ID[i][1],'\n'))
 
 if __name__=='__main__':
-    ProcessNumb=1 #进程数量
+    ProcessNumb=8 #进程数量
 
-    Unmatched_node_dict=load_Unmatched_node(r'../data/numatched_node_all.txt',ProcessNumb)#相同进程要处理的数据放在同一个key中
-    Node_topology_dict=load_Node_topology(r'../data/node2.xlsx')
+    Unmatched_node_dict=load_Unmatched_node(r'../data/numatched_node_huzhou.txt',ProcessNumb)#相同进程要处理的数据放在同一个key中
+    Node_topology_dict=load_Node_topology(r'../data/node_huzhou.xlsx')
 
     print(DT.datetime.now())#开始时间
     start_nearest_Node(Unmatched_node_dict,Node_topology_dict )
